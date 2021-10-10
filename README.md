@@ -34,3 +34,9 @@ const Contenedor = () => {
   return <DivConEstilo>Hola Styled Component</DivConEstilo>;
 };
 ```
+
+## SVGR: de SVG a componente de ReactJS
+
+En esta clase usaremos [maketext.io](https://maketext.io/) para crear nuestro logo y descargarlo en [SVG](https://jakearchibald.github.io/svgomg/). Posteriormente a esto utilizaremos SVGOMG para optimizar nuestro logo y tener una mejor versión para usarla en nuestro proyecto.
+
+Luego para convertir nuestro logo svg en un componente utilizaremos [SVGR](https://react-svgr.com/playground/).
