@@ -1,17 +1,32 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/prefer-default-export */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Category } from '../Category';
 import { List, Item } from './styles';
 
-import { initialState } from '../../../initialState';
+// import { initialState } from '../../../initialState';
 
-export const ListOfCategories = () => (
-  <List>
-    {initialState.categories.map((category) => (
-      <Item key={category.id}>
-        <Category {...category} />
-      </Item>
-    ))}
-  </List>
-);
+export const ListOfCategories = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    window
+      .fetch(
+        'https://petgram-server-diego-luna-v2-diego-luna.vercel.app/categories'
+      )
+      .then((res) => res.json())
+      .then((response) => {
+        setCategories(response);
+      });
+  }, []);
+
+  return (
+    <List>
+      {categories.map((category) => (
+        <Item key={category.id}>
+          <Category {...category} />
+        </Item>
+      ))}
+    </List>
+  );
+};
