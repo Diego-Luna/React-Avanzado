@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect, useRef, useState } from 'react';
 import { MdFavoriteBorder } from 'react-icons/md';
@@ -12,17 +13,22 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const observer = new window.IntersectionObserver((entries) => {
-      const { isIntersecting } = entries[0];
-      if (isIntersecting) {
-        console.log('si');
-        setShow(true);
-        // desconectamos el observador
-        observer.disconnect();
-      }
-    });
+    Promise.resolve(
+      typeof window.IntersectionObserver !== 'undefined'
+        ? window.IntersectionObserver
+        : import('intersection-observer')
+    ).then(() => {
+      const observer = new window.IntersectionObserver((entries) => {
+        const { isIntersecting } = entries[0];
+        if (isIntersecting) {
+          setShow(true);
+          // desconectamos el observador
+          observer.disconnect();
+        }
+      });
 
-    observer.observe(element.current);
+      observer.observe(element.current);
+    });
   }, [element]);
 
   return (
