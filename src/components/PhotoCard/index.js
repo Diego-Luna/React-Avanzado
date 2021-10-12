@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/prefer-default-export */
 import React, { useEffect, useRef, useState } from 'react';
-import { MdFavoriteBorder } from 'react-icons/md';
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { Button, ImgWrapper, Img, Article } from './styles';
 
 const DEFAULT_IMG =
@@ -11,6 +11,15 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG }) => {
   const element = useRef(null);
 
   const [show, setShow] = useState(false);
+  const key = `like-${id}`;
+  const [liked, setLiked] = useState(() => {
+    try {
+      const like = window.localStorage.getItem(key);
+      return like;
+    } catch (error) {
+      return false;
+    }
+  });
 
   useEffect(() => {
     Promise.resolve(
@@ -31,6 +40,17 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG }) => {
     });
   }, [element]);
 
+  const Icon = liked ? MdFavorite : MdFavoriteBorder;
+
+  const setLocalStorage = (value) => {
+    try {
+      window.localStorage.setItem(key, value);
+      setLiked(value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Article ref={element}>
       {show ? (
@@ -41,8 +61,8 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG }) => {
             </ImgWrapper>
           </a>
 
-          <Button type="button">
-            <MdFavoriteBorder size="32px" /> {likes} likes !
+          <Button type="button" onClick={() => setLocalStorage(!liked)}>
+            <Icon size="32px" /> {likes} likes !
           </Button>
         </>
       ) : (
