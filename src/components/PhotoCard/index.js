@@ -12,12 +12,16 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG }) => {
 
   const [show, setShow] = useState(false);
   const key = `like-${id}`;
+
   const [liked, setLiked] = useState(() => {
     try {
       const like = window.localStorage.getItem(key);
-      return like;
+
+      console.log('--> like  ', ' - ', id, ' - ', like);
+
+      return like === 'true';
     } catch (error) {
-      return false;
+      return null;
     }
   });
 
@@ -40,7 +44,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG }) => {
     });
   }, [element]);
 
-  const Icon = liked ? MdFavorite : MdFavoriteBorder;
+  const Icon = liked === true ? MdFavorite : MdFavoriteBorder;
 
   const setLocalStorage = (value) => {
     try {
