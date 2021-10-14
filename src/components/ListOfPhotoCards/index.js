@@ -2,24 +2,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { PhotoCard } from '../PhotoCard';
 
-const whitPhotos = gql`
-  query getPhotos {
-    photos {
-      id
-      categoryId
-      src
-      likes
-      userId
-      liked
-    }
-  }
-`;
+import { whitPhotos } from '../../hoc/withPhotos';
 
-export const ListOfPhotocars = () => {
-  const { loading, error, data } = useQuery(whitPhotos);
+export const ListOfPhotoCars = ({ categoryId }) => {
+  const { loading, error, data } = useQuery(whitPhotos, {
+    variables: { categoryId },
+  });
 
   if (error) {
     return <h2>Internal Server Error</h2>;
