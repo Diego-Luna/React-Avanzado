@@ -16,6 +16,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+        enforce: 'pre',
         use: {
           loader: 'babel-loader',
         },
@@ -55,4 +56,5 @@ module.exports = {
     port: 3005,
     open: true,
   },
+  devtool: 'source-map',
 };
