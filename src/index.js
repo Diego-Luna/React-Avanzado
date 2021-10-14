@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import ApolloClient from 'apollo-boost';
-// import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+// import { ApolloProvider, InMemoryCache } from '@apollo/client';
+// import ApolloClient from 'apollo-boost';
 
 import App from './App';
 
