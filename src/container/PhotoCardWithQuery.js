@@ -1,30 +1,34 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-
-// import { gql } from 'apollo-boost';
-// import { Query } from 'react-apollo';
-// import { PhotoCard } from '../components/PhotoCard';
-
 import { gql, useQuery } from '@apollo/client';
+import { PhotoCard } from '../components/PhotoCard';
 
-export const whitPhotos = gql`
+const query = gql`
   query getSinglePhoto($id: ID!) {
     photo(id: $id) {
       id
       categoryId
       src
       likes
-      userId
       liked
+      userId
     }
   }
 `;
 
-export const PhotoCardWithQuery = ({ id }) => (
-  <Query query={query} variables={{ id }}>
-    {({ loading, error, data }) => {
-      const { photo = {} } = data;
-      return <PhotoCard {...photo} />;
-    }}
-  </Query>
-);
+export const PhotoCardWithQuery = ({ id }) => {
+  const { loading, error, data } = useQuery(query, {
+    variables: {
+      id,
+    },
+  });
+  if (error) {
+    return <h2>Internal Server Error</h2>;
+  }
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  return <PhotoCard {...data.photo} />;
+};
