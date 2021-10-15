@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { gql } from '@apollo/client';
 
-export const whitPhotos = gql`
+const GET_PHOTOS = gql`
   query getPhotos($categoryId: ID) {
     photos(categoryId: $categoryId) {
       id
@@ -13,3 +13,5 @@ export const whitPhotos = gql`
     }
   }
 `;
+
+export const whitPhotos = GET_PHOTOS;
