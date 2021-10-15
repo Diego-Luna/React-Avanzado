@@ -1,14 +1,15 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import ReactPlaceholder from 'react-placeholder';
 
-import { Button, ImgWrapper, Img, Article } from './styles';
+import { ImgWrapper, Img, Article } from './styles';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useNearScreen } from '../../hooks/useNearScreen';
+import { FavButton } from '../FavButton';
+import { useMuationToogleLike } from '../../hooks/useMuationToogleLike';
 
-//
 import { photoCardSkeleton } from './cardSkeleton';
 
 const DEFAULT_IMG =
@@ -19,7 +20,20 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG, loading }) => {
   const [liked, setLiked] = useLocalStorage(key, false);
   const [show, element] = useNearScreen();
 
-  const Icon = liked === true ? MdFavorite : MdFavoriteBorder;
+  const { mutation, mutationLoading, mutationError } = useMuationToogleLike();
+
+  // const handleFavClicl = () => setLiked(!liked);
+
+  const handleFavClick = () => {
+    !liked &&
+      mutation({
+        variables: {
+          input: { id },
+        },
+      });
+    setLiked(!liked);
+  };
+  console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
 
   return (
     <Article ref={element}>
@@ -35,9 +49,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG, loading }) => {
                 <Img src={src} />
               </ImgWrapper>
             </a>
-            <Button onClick={() => setLiked(!liked)}>
-              <Icon size="32px" /> {likes} likes!
-            </Button>
+            <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
           </>
         </ReactPlaceholder>
       )}
