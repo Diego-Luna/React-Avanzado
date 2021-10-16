@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -8,14 +7,15 @@ import { ListOfPhotoCars } from '../components/ListOfPhotoCards';
 export const Home = () => {
   const { id } = useParams();
   console.log('--> id :', id);
+
+  const idNumber = typeof id === 'string';
+
   return (
     <>
-      {id !== undefined ? (
-        <ListOfPhotoCars categoryId={id} />
-      ) : (
-        <ListOfCategories />
-      )}
-      {/* <ListOfCategories /ﬂ */}
+      <ListOfCategories />
+
+      {idNumber ? <ListOfPhotoCars categoryId={id} /> : <ListOfPhotoCars />}
+      {/* <ListOfPhotoCars /> */}
     </>
   );
 };

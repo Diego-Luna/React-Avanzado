@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Logo } from './components/Logo';
 
 import { GlobalStyle } from './styles/Globalstyles';
@@ -8,29 +8,28 @@ import { PhotoCardWithQuery } from './container/PhotoCardWithQuery';
 
 import { Home } from './pages/Home';
 
-
 function App() {
   const urlParams = new window.URLSearchParams(window.location.search);
 
   const detailId = urlParams.get('detail');
 
   return (
-    <>
+    <Router>
       <Logo />
       <GlobalStyle />
       {detailId ? (
         <PhotoCardWithQuery id={detailId} />
       ) : (
-        <Router>
-          <Route path="/">
+        <Switch>
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/pet/:id">
+          <Route exact path="/pet/:id">
             <Home />
           </Route>
-        </Router>
+        </Switch>
       )}
-    </>
+    </Router>
   );
 }
 
