@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 // para ponerle estilos a un link
-import { Link } from 'react-router-dom';
+import { Link as LinkRouter } from 'react-router-dom';
 
 // para ponerle estilos a un link
-export const Anchor = styled(Link)`
+export const Link = styled(LinkRouter)`
   display: flex;
   flex-direction: column;
   text-align: center;
