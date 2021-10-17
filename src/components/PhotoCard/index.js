@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import ReactPlaceholder from 'react-placeholder';
 
+import { Link } from 'react-router-dom';
 import { ImgWrapper, Img, Article } from './styles';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useNearScreen } from '../../hooks/useNearScreen';
@@ -33,7 +35,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG, loading }) => {
       });
     setLiked(!liked);
   };
-  console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
+  // console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
 
   return (
     <Article ref={element}>
@@ -44,11 +46,11 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG, loading }) => {
           customPlaceholder={photoCardSkeleton}
         >
           <>
-            <a href={`/?detail=${id}`}>
+            <Link to={`/detail/${id}`}>
               <ImgWrapper>
                 <Img src={src} />
               </ImgWrapper>
-            </a>
+            </Link>
             <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
           </>
         </ReactPlaceholder>

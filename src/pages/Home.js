@@ -6,7 +6,7 @@ import { ListOfPhotoCars } from '../components/ListOfPhotoCards';
 
 export const Home = () => {
   const { id } = useParams();
-  console.log('--> id :', id);
+  // console.log('--> id :', id);
 
   const idNumber = typeof id === 'string';
 
@@ -15,7 +15,6 @@ export const Home = () => {
       <ListOfCategories />
 
       {idNumber ? <ListOfPhotoCars categoryId={id} /> : <ListOfPhotoCars />}
-      {/* <ListOfPhotoCars /> */}
     </>
   );
 };
