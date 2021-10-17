@@ -8,6 +8,8 @@ import { GlobalStyle } from './styles/Globalstyles';
 import { Home } from './pages/Home';
 import { Detail } from './pages/Detail';
 
+import { NavBar } from './components/NavBar';
+
 function App() {
   return (
     <Router>
@@ -22,9 +24,11 @@ function App() {
           <Home />
         </Route>
         <Route exact path="/detail/:detailId">
-          <Detail  />
+          <Detail />
         </Route>
       </Switch>
+
+      <NavBar />
     </Router>
   );
 }
