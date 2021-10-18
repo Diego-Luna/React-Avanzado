@@ -13,7 +13,7 @@ import { NotRegisteredUser } from './pages/NotRegisteredUser';
 
 import { NavBar } from './components/NavBar';
 
-const UserLogged = ({ children }) => children({ isAuth: false });
+import Context from './Context';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
           <Detail />
         </Route>
 
-        <UserLogged>
+        <Context.Consumer>
           {({ isAuth }) =>
             isAuth ? (
               <>
@@ -46,7 +46,7 @@ function App() {
               </>
             )
           }
-        </UserLogged>
+        </Context.Consumer>
       </Switch>
 
       <NavBar />
