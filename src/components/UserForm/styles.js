@@ -31,6 +31,25 @@ export const Title = styled.h2`
 `;
 
 export const Error = styled.span`
-  color: red;
+  display: block;
   font-size: 14px;
-`
+  color: red;
+  text-align: center;
+  padding: 8px 0px;
+  margin: 10px 0px 10px;
+  width: 100%;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: rgba(215, 44, 44, 0.3);
+  background: rgba(215, 44, 44, 0.3);
+`;
