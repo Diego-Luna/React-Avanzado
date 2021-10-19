@@ -6,8 +6,13 @@ const REGISTER = gql`
     signup(input: $input)
   }
 `;
-export const useRegisterMutation = () => {
-  const [registerMutation] = useMutation(REGISTER);
+// export const useRegisterMutation = () => {
+export const useRegisterMutation = (email, password) => {
+  // const [registerMutation] = useMutation(REGISTER);
+  const [registerMutation, { data, loading, error }] = useMutation(REGISTER, {
+    variables: { input: { email, password } },
+  });
 
-  return { registerMutation };
+  // return { registerMutation };
+  return { registerMutation, data, loading, error };
 };
