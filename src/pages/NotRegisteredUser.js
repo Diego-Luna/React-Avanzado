@@ -5,7 +5,8 @@
 import React from 'react';
 import Context from '../Context';
 import { UserForm } from '../components/UserForm';
-import { useRegisterMutation } from '../container/RegisterMutation';
+import { useRegisterMutation } from '../hooks/useRegisterMutation';
+import { useLoginMutation } from '../hooks/useLoginMutation';
 
 export const NotRegisteredUser = () => (
   <Context.Consumer>
@@ -13,7 +14,7 @@ export const NotRegisteredUser = () => (
       return (
         <>
           <Registro activateAuth={activateAuth} />
-          <UserForm activateAuth={activateAuth} title="Iniciar sesión" />
+          <Login activateAuth={activateAuth} />
         </>
       );
     }}
@@ -37,6 +38,26 @@ const Registro = ({ activateAuth }) => {
       error={errorMsg}
       onSubmit={onSubmit}
       title="Registrarse"
+    />
+  );
+};
+const Login = ({ activateAuth }) => {
+  const { loginMutation, loading, error } = useLoginMutation();
+  const onSubmit = ({ email, password }) => {
+    const input = { email, password };
+    const variables = { input };
+    loginMutation({ variables }).then(() => {
+      activateAuth();
+    });
+  };
+  const errorMsg = error ? 'El usuario no existe o hay algun problema.' : '';
+
+  return (
+    <UserForm
+      disabled={loading}
+      error={errorMsg}
+      onSubmit={onSubmit}
+      title="Iniciar sesión"
     />
   );
 };
