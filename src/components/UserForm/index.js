@@ -4,6 +4,7 @@
 import React from 'react';
 import { useInputValue } from '../../hooks/useInputValue';
 import { Error, Form, Input, Button, Title } from './styles';
+import { Loading } from '../Loading';
 
 export const UserForm = ({ onSubmit, title, error, disabled }) => {
   const email = useInputValue('');
@@ -25,7 +26,8 @@ export const UserForm = ({ onSubmit, title, error, disabled }) => {
           type="password"
           {...password}
         />
-        <Button>{title}</Button>
+        {/* <Button>{title}</Button> */}
+        <Button>{disabled ? <Loading /> : title}</Button>
       </Form>
       {error ? <Error>{error}</Error> : ''}
     </>

@@ -31,7 +31,7 @@ const Registro = ({ activateAuth }) => {
   };
   const errorMsg = error ? 'El usuario ya existe o hay algún problema.' : '';
 
-  console.log('-> errorMsg -> ', errorMsg);
+  console.log('-> loading -> ', loading);
 
   return (
     <UserForm

@@ -35,3 +35,22 @@ export const bounceDown = ({ time = '1s', type = 'ease' } = {}) =>
   css`
     animation: ${time} ${bounceDownKeyFrames} ${type};
   `;
+
+const loaderKeyframe = keyframes`
+  0% {
+    transform: rotate(0deg);
+
+  }
+  50%, 100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const loading = ({
+  time = '1s',
+  type = 'cubic-bezier(0, 0.5, 0.5, 1)',
+  animationIterationCount = 'infinite',
+} = {}) =>
+  css`
+    animation: ${time} ${loaderKeyframe} ${type} ${animationIterationCount};
+  `;
