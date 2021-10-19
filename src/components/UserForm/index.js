@@ -27,7 +27,7 @@ export const UserForm = ({ onSubmit, title, error, disabled }) => {
           {...password}
         />
         {/* <Button>{title}</Button> */}
-        <Button>{disabled ? <Loading /> : title}</Button>
+        <Button disabled={disabled}>{disabled ? <Loading /> : title}</Button>
       </Form>
       {error ? <Error>{error}</Error> : ''}
     </>

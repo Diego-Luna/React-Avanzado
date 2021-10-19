@@ -22,6 +22,9 @@ export const Button = styled.button`
   width: 100%;
   text-align: center;
   border: none;
+  &[disabled] {
+    opacity: .6;
+  }
 `;
 
 export const Title = styled.h2`
