@@ -23,7 +23,7 @@ export const Button = styled.button`
   text-align: center;
   border: none;
   &[disabled] {
-    opacity: .6;
+    opacity: 0.6;
   }
 `;
 
