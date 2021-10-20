@@ -26,8 +26,10 @@ const Registro = ({ activateAuth }) => {
   const onSubmit = ({ email, password }) => {
     const input = { email, password };
     const variables = { input };
-    registerMutation({ variables }).then(() => {
-      activateAuth();
+
+    registerMutation({ variables }).then(({ data }) => {
+      const { signup } = data;
+      activateAuth(signup);
     });
   };
   const errorMsg = error ? 'El usuario ya existe o hay algún problema.' : '';
@@ -41,13 +43,16 @@ const Registro = ({ activateAuth }) => {
     />
   );
 };
+
 const Login = ({ activateAuth }) => {
   const { loginMutation, loading, error } = useLoginMutation();
   const onSubmit = ({ email, password }) => {
     const input = { email, password };
     const variables = { input };
-    loginMutation({ variables }).then(() => {
-      activateAuth();
+
+    loginMutation({ variables }).then(({ data }) => {
+      const { login } = data;
+      activateAuth(login);
     });
   };
   const errorMsg = error ? 'El usuario no existe o hay algun problema.' : '';
@@ -61,25 +66,3 @@ const Login = ({ activateAuth }) => {
     />
   );
 };
-
-// export const NotRegisteredUser = () => {
-//   const { registerMutation } = useRegisterMutation();
-
-//   return (
-//     <Context.Consumer>
-//       {({ activateAuth }) => {
-//         const onSubmit = ({ email, password }) => {
-//           const input = { email, password };
-//           const variables = { input };
-//           registerMutation({ variables }).then(activateAuth);
-//         };
-//         return (
-//           <>
-//             <UserForm onSubmit={onSubmit} title="Registrarse" />
-//             <UserForm onSubmit={activateAuth} title="Iniciar Sesion" />
-//           </>
-//         );
-//       }}
-//     </Context.Consumer>
-//   );
-// };
