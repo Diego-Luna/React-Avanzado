@@ -21,10 +21,11 @@ export const ListOfPhotoCars = ({ categoryId }) => {
 
   return (
     <ul>
-      {data.photos.map((photo) => (
-        <PhotoCard key={photo.id} {...photo} />
+      {data.photos.map((photo) => {
+        console.log('--> photo ->', photo);
+        return <PhotoCard key={photo.id} {...photo} />;
         // <PhotoCard key={id} id={id} {...photoCard} />
-      ))}
+      })}
     </ul>
   );
 };

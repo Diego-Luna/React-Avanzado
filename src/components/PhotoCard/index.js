@@ -7,8 +7,8 @@ import ReactPlaceholder from 'react-placeholder';
 
 import { Link } from 'react-router-dom';
 import { ImgWrapper, Img, Article } from './styles';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { useNearScreen } from '../../hooks/useNearScreen';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { FavButton } from '../FavButton';
 import { useMuationToogleLike } from '../../hooks/useMuationToogleLike';
 
@@ -17,25 +17,33 @@ import { photoCardSkeleton } from './cardSkeleton';
 const DEFAULT_IMG =
   'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60';
 
-export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG, loading }) => {
-  const key = `like-${id}`;
-  const [liked, setLiked] = useLocalStorage(key, false);
+export const PhotoCard = ({
+  id,
+  liked,
+  likes = 0,
+  src = DEFAULT_IMG,
+  loading,
+}) => {
   const [show, element] = useNearScreen();
 
   const { mutation, mutationLoading, mutationError } = useMuationToogleLike();
 
+  const key = `like-${id}`;
+  const [likedTwo, setLiked] = useLocalStorage(key, false);
+
   // const handleFavClicl = () => setLiked(!liked);
 
   const handleFavClick = () => {
-    !liked &&
-      mutation({
-        variables: {
-          input: { id },
-        },
-      });
-    setLiked(!liked);
+    mutation({
+      variables: {
+        input: { id },
+      },
+    });
+    setLiked(!likedTwo);
   };
   // console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
+
+  console.log('--> liked ->', liked);
 
   return (
     <Article ref={element}>
@@ -51,7 +59,7 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMG, loading }) => {
                 <Img src={src} />
               </ImgWrapper>
             </Link>
-            <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
+            <FavButton liked={likedTwo} likes={likes} onClick={handleFavClick} />
           </>
         </ReactPlaceholder>
       )}
