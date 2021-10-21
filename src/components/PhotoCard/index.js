@@ -28,8 +28,8 @@ export const PhotoCard = ({
 
   const { mutation, mutationLoading, mutationError } = useMuationToogleLike();
 
-  const key = `like-${id}`;
-  const [likedTwo, setLiked] = useLocalStorage(key, false);
+  // const key = `like-${id}`;
+  // const [likedTwo, setLiked] = useLocalStorage(key, false);
 
   // const handleFavClicl = () => setLiked(!liked);
 
@@ -39,11 +39,9 @@ export const PhotoCard = ({
         input: { id },
       },
     });
-    setLiked(!likedTwo);
+    // setLiked(!likedTwo);
   };
   // console.log('{ mutation, mutationLoading, mutationError }', { mutation, mutationLoading, mutationError })
-
-  console.log('--> liked ->', liked);
 
   return (
     <Article ref={element}>
@@ -59,7 +57,8 @@ export const PhotoCard = ({
                 <Img src={src} />
               </ImgWrapper>
             </Link>
-            <FavButton liked={likedTwo} likes={likes} onClick={handleFavClick} />
+            {/* <FavButton liked={likedTwo} likes={likes} onClick={handleFavClick} /> */}
+            <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
           </>
         </ReactPlaceholder>
       )}
