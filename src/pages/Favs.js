@@ -8,7 +8,7 @@ import { useGetFavorites } from '../hooks/useGetFavorites';
 export const Favs = () => {
   const { loading, data, error } = useGetFavorites();
 
-  console.log("- data ", data);
+  console.log("-> data > ", data);
 
   if(error){
     return <h1>Error</h1>
