@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 import React, { useState, createContext } from 'react';
 
-const Contex = createContext();
+export const Contex = createContext();
 
 const Provider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(() =>
@@ -11,6 +12,11 @@ const Provider = ({ children }) => {
     activateAuth: (token) => {
       setIsAuth(true);
       window.sessionStorage.setItem('token', token);
+    },
+    removeAuth: () => {
+      setIsAuth(false);
+      window.sessionStorage.removeItem('token');
+      __APOLLO_CLIENT__.resetStore();
     },
   };
 
