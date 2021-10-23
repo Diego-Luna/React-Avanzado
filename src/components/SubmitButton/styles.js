@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Button = styled.button`
   background: #8d00ff;
@@ -10,6 +10,6 @@ export const Button = styled.button`
   width: 100%;
   text-align: center;
   &[disabled] {
-    opacity: .3;
+    opacity: 0.3;
   }
-`
+`;

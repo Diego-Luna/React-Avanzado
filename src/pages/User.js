@@ -1,10 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import React, { Fragment, useContext } from 'react';
-import { Contex } from '../Context';
+import { Context } from '../Context';
 import { SubmitButton } from '../components/SubmitButton';
 
 export const User = () => {
-  const { removeAuth } = useContext(Contex);
+  const { removeAuth } = useContext(Context);
   return (
     <>
       <h1>User</h1>

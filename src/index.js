@@ -10,7 +10,7 @@ import {
 } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 
-import Contex from './Context';
+import Context from './Context';
 
 import App from './App';
 
@@ -63,10 +63,10 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <Contex.Provider>
+  <Context.Provider>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
-  </Contex.Provider>,
+  </Context.Provider>,
   document.getElementById('app')
 );

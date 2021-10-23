@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Logo } from './components/Logo';
@@ -13,9 +13,10 @@ import { NotRegisteredUser } from './pages/NotRegisteredUser';
 
 import { NavBar } from './components/NavBar';
 
-import Context from './Context';
+import { Context } from './Context';
 
 function App() {
+  const { isAuth } = useContext(Context);
   return (
     <Router>
       <Logo />
@@ -32,21 +33,17 @@ function App() {
           <Detail />
         </Route>
 
-        <Context.Consumer>
-          {({ isAuth }) =>
-            isAuth ? (
-              <>
-                <Route exact path="/favs" component={Favs} />
-                <Route exact path="/user" component={User} />
-              </>
-            ) : (
-              <>
-                <Route exact path="/favs" component={NotRegisteredUser} />
-                <Route exact path="/user" component={NotRegisteredUser} />
-              </>
-            )
-          }
-        </Context.Consumer>
+        {isAuth ? (
+          <>
+            <Route exact path="/favs" component={Favs} />
+            <Route exact path="/user" component={User} />
+          </>
+        ) : (
+          <>
+            <Route exact path="/favs" component={NotRegisteredUser} />
+            <Route exact path="/user" component={NotRegisteredUser} />
+          </>
+        )}
       </Switch>
 
       <NavBar />

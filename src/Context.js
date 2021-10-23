@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useState, createContext } from 'react';
 
-export const Contex = createContext();
+export const Context = createContext();
 
 const Provider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(() =>
@@ -20,7 +20,7 @@ const Provider = ({ children }) => {
     },
   };
 
-  return <Contex.Provider value={value}>{children}</Contex.Provider>;
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
-export default { Consumer: Contex.Consumer, Provider };
+export default { Consumer: Context.Consumer, Provider };
