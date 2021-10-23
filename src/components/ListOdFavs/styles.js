@@ -20,7 +20,11 @@ export const Link = styled(LinkRouter)`
 
 export const Grid = styled.div`
   padding-top: 32px;
-
 `;
 
-export const Grid = styled.div``
+export const Image = styled.img`
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+`;
