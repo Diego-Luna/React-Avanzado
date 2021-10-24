@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import { Logo } from './components/Logo';
 
 import { GlobalStyle } from './styles/Globalstyles';
@@ -10,7 +15,7 @@ import { Detail } from './pages/Detail';
 import { Favs } from './pages/Favs';
 import { User } from './pages/User';
 import { NotRegisteredUser } from './pages/NotRegisteredUser';
-
+import { NotFound } from './pages/NotFound';
 import { NavBar } from './components/NavBar';
 
 import { Context } from './Context';
@@ -33,17 +38,15 @@ function App() {
           <Detail />
         </Route>
 
-        {isAuth ? (
-          <>
-            <Route exact path="/favs" component={Favs} />
-            <Route exact path="/user" component={User} />
-          </>
-        ) : (
-          <>
-            <Route exact path="/favs" component={NotRegisteredUser} />
-            <Route exact path="/user" component={NotRegisteredUser} />
-          </>
-        )}
+        {!isAuth && <Route exact component={NotRegisteredUser} path="/login" />}
+        {!isAuth && <Redirect noThrow from="/favs" to="/login" />}
+        {!isAuth && <Redirect noThrow from="/user" to="/login" />}
+        {isAuth && <Redirect noThrow from="/login" to="/" />}
+
+        <Route exact path="/favs" component={Favs} />
+        <Route exact path="/user" component={User} />
+
+        <Route component={NotFound} key="Error 404" />
       </Switch>
 
       <NavBar />
