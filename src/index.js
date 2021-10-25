@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
@@ -13,25 +14,6 @@ import { onError } from '@apollo/client/link/error';
 import Context from './Context';
 
 import App from './App';
-
-// const httpLink = createHttpLink({
-//   uri: 'https://petgram-server-diego-luna-v2-pjzqjew1c-diego-luna.vercel.app/graphql',
-// });
-
-// const authLink = setContext((_, { headers }) => {
-//   const token = window.sessionStorage.getItem('token');
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `Bearer ${token}` : '',
-//     },
-//   };
-// });
-
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   const token = window.sessionStorage.getItem('token');

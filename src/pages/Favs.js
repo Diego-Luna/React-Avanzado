@@ -8,8 +8,6 @@ import { Layout } from '../components/Layout';
 export const Favs = () => {
   const { loading, data, error } = useGetFavorites();
 
-  console.log('-> data > ', data);
-
   if (error) {
     return <h1>Error</h1>;
   }
