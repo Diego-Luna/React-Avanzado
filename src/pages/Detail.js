@@ -8,7 +8,7 @@ export const Detail = () => {
   const { detailId } = useParams();
 
   return (
-    <Layout title={`Fotografía ${} `} >
+    <Layout title={`Fotografía ${detailId} `}>
       <PhotoCardWithQuery id={detailId} />
     </Layout>
   );
