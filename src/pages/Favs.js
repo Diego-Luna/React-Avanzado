@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { useGetFavorites } from '../hooks/useGetFavorites';
 import { ListOfFavs } from '../components/ListOdFavs';
 
@@ -19,6 +20,13 @@ export const Favs = () => {
 
   return (
     <>
+      <Helmet>
+        <title>moongram - tus favoritos</title>
+        <meta
+          name="description"
+          content="Aqui puedes encontrar tus favoritos"
+        />
+      </Helmet>
       <ListOfFavs favs={data.favs} />
     </>
   );
