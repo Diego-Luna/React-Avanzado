@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Category } from '../Category';
 import { List, Item } from './styles';
 
-
 function useCategoriesData() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);

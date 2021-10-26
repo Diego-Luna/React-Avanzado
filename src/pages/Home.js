@@ -23,4 +23,7 @@ const HomePage = () => {
   );
 };
 
-export const Home = React.memo(HomePage, (prevProps, props) => prevProps.id === props.id);
+export const Home = React.memo(
+  HomePage,
+  (prevProps, props) => prevProps.id === props.id
+);
