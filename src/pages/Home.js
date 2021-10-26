@@ -5,7 +5,7 @@ import { ListOfCategories } from '../components/ListOfCategories';
 import { ListOfPhotoCars } from '../components/ListOfPhotoCards';
 import { Layout } from '../components/Layout';
 
-export const Home = () => {
+const HomePage = () => {
   const { id } = useParams();
   // console.log('--> id :', id);
 
@@ -22,3 +22,5 @@ export const Home = () => {
     </Layout>
   );
 };
+
+export const Home = React.memo(HomePage, (prevProps, props) => prevProps.id === props.id);

@@ -6,6 +6,8 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "serve:dev": "npm run build:dev && npx serve dist -s",
     "format": "prettier --write '{*.js,src/**/*.{js,jsx}}' ",
     "lint": "eslint src/ --fix"
   },
