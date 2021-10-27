@@ -5,7 +5,9 @@ import { useGetFavorites } from '../hooks/useGetFavorites';
 import { ListOfFavs } from '../components/ListOdFavs';
 import { Layout } from '../components/Layout';
 
-export const Favs = () => {
+// Para que funcione con React.Lazy
+// export const Favs = () => {
+export default () => {
   const { loading, data, error } = useGetFavorites();
 
   if (error) {
