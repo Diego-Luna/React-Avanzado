@@ -1,7 +1,7 @@
 {
   "name": "react-avanzado",
   "version": "1.0.0",
-  "description": "",
+  "description": "Usando React como todo un profecional, aciendo un clon de instagram con React Avanzado",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode development",
