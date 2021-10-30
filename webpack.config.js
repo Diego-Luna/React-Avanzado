@@ -65,6 +65,15 @@ module.exports = {
           sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
           purpose: 'maskable',
         },
+        {
+          src: path.resolve('src/assets/icon.png'),
+          size: '1024x1024' // you can also use the specifications pattern
+        },
+        {
+          src: path.resolve('src/assets/icon.png'),
+          size: '1024x1024',
+          purpose: 'maskable'
+        }
       ],
     }),
   ],
