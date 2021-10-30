@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 module.exports = {
   entry: './src/index.js',
@@ -49,6 +50,22 @@ module.exports = {
 
     new MiniCssExtractPlugin({
       filename: 'assests/[name].css',
+    }),
+    new WebpackPwaManifest({
+      name: 'Moongram - tu app de fotos de mascotas',
+      short_name: 'Moongram',
+      description:
+        'Con Petgram puedes encontrar fotos de animales domésticos my fácilmente',
+      background_color: '#ffffff',
+      theme_color: '#b1a',
+      crossorigin: 'use-credentials',
+      icons: [
+        {
+          src: path.resolve('src/assets/icon.png'),
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+          purpose: 'maskable',
+        },
+      ],
     }),
   ],
   devServer: {
